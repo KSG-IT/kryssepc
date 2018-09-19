@@ -10,12 +10,18 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 *, ::before, ::after {
     box-sizing: border-box;
 }
-html, body {
+body {
     padding: 0;
     margin: 0;
+}
+div#app {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
 }
 </style>
