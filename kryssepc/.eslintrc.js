@@ -62,6 +62,8 @@ module.exports = {
     'no-continue': 0,
     'no-extend-native': 0,
     'no-mixed-operators': 0,
-    'no-restricted-syntax': 0
+    'no-restricted-syntax': 0,
+    'curly': 0,
+    'no-nested-ternary': 0
   }
 }

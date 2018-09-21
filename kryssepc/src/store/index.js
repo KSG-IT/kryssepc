@@ -8,27 +8,47 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         drinkIcons,
-        products: [
-            {
-                id: 1,
-                name: 'Øl',
-                icon: 'can'
-            },
-            {
-                id: 2,
-                name: 'Brus',
-                icon: 'rusbrus'
-            },
-            {
-                id: 3,
-                name: 'Shot',
-                icon: 'shot'
-            },
-            {
-                id: 4,
-                name: 'Drink',
-                icon: 'cocktail'
-            }
-        ]
+        customer: null,
+        products: [],
+        basket: []
+    },
+
+    getters: {
+        getBasketTotal(state) {
+            let total = 0
+            state.basket.forEach(item => {
+                const product = state.products.find(p => p.id === item)
+                if (product) total += product.price
+            })
+            return total
+        }
+    },
+    mutations: {
+        setCustomer(state, customer) {
+            state.customer = customer
+        },
+
+        setProducts(state, products) {
+            state.products = products
+        },
+
+        addToBasket(state, productId) {
+            // Product doesn't exist
+            if (!state.products.find(p => p.id === productId))
+                throw Error(`Product with id ${productId} does not exist.`)
+
+            state.basket.push(productId)
+        },
+        removeFromBasket(state, index) {
+            state.basket.splice(index, 1)
+        },
+        emptyBasket(state) {
+            state.basket = []
+        },
+
+        cancelTransaction(state) {
+            state.customer = null
+            state.basket = []
+        }
     }
 })
