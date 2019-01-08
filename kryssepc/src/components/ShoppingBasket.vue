@@ -28,7 +28,7 @@ export default {
             return this.items.reduce((acc, id) => {
                 const prod = this.products.find(p => p.id === id)
                 if (prod) {
-                    if (acc.hasOwnProperty(id)) acc[id].count ++
+                    if (acc.hasOwnProperty(id)) acc[id].count++
                     else acc[id] = { product: prod, count: 1 }
                 }
                 return acc
